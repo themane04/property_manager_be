@@ -1,6 +1,10 @@
 from pathlib import Path
 
 from mongoengine import connect
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -97,10 +101,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ORIGIN_ALLOW_ALL = True
 
 connect(
-    db="property_manager_db",
-    username="mane",
-    password="marjan2004.",
-    host="localhost",
-    port=27017,
-    authentication_source='admin',
+    db=os.environ.get("MONGO_DB"),
+    username=os.environ.get("MONGO_USER"),
+    password=os.environ.get("MONGO_PASS"),
+    host=os.environ.get("MONGO_HOST"),
+    port=int(os.environ.get("MONGO_PORT")),
+    authentication_source=os.environ.get("MONGO_AUTH_SOURCE"),
 )
