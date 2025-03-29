@@ -4,7 +4,6 @@ services:
   mongo:
     image: mongo:latest
     container_name: mongodb-exercise
-    restart: always
     ports:
       - "27017:27017"
     environment:
@@ -25,11 +24,12 @@ services:
       - "8000:8000"
     environment:
       - DEBUG=1
-      - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
       - MONGO_USERNAME=admin
       - MONGO_PASSWORD=admin
+      - MONGO_DB=property_manager_db
       - MONGO_HOST=mongo
       - MONGO_PORT=27017
+      - MONGO_AUTH_SOURCE=admin
     depends_on:
       - mongo
 

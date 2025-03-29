@@ -102,8 +102,8 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 connect(
     db=os.environ.get("MONGO_DB"),
-    username=os.environ.get("MONGO_USER"),
-    password=os.environ.get("MONGO_PASS"),
+    username=os.environ.get("MONGO_USERNAME"),
+    password=os.environ.get("MONGO_PASSWORD"),
     host=os.environ.get("MONGO_HOST"),
     port=int(os.environ.get("MONGO_PORT")),
     authentication_source=os.environ.get("MONGO_AUTH_SOURCE"),
