@@ -36,7 +36,7 @@ It exposes a RESTful API used by the frontend to perform CRUD operations across 
 ```bash
 # Clone the repo
 git clone https://github.com/themane04/property_manager_be.git
-cd property-manager-be
+cd property_manager_be
 
 # Start backend + MongoDB using docker-compose
 docker compose up -d
@@ -53,7 +53,7 @@ docker exec -it mongodb-exercise mongosh -u admin -p admin
 ```bash
 # Clone the repo
 git clone https://github.com/themane04/property_manager_be.git
-cd property-manager-be
+cd property_manager_be
 
 # Create virtual environment
 python -m venv venv
