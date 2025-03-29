@@ -13,7 +13,7 @@ class RentalUnitListCreateView(APIView):
     def get(self, request):
         units = RentalUnit.objects.all()
         if not units:
-            return Response({"error": "Rental units not found."}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"error": "No Rental units found."}, status=status.HTTP_404_NOT_FOUND)
         serializer = RentalUnitSerializer(units, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 

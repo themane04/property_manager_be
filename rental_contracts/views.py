@@ -20,12 +20,12 @@ class RentalContractListCreateView(APIView):
         serializer = RentalContractSerializer(data=request.data)
         if serializer.is_valid():
             try:
-                RentalUnit.objects.get(id=serializer.validated_data["rental_unit"])
-                Tenant.objects.get(id=serializer.validated_data["tenant"])
+                rental_unit = RentalUnit.objects.get(id=serializer.validated_data["rental_unit_id"])
+                tenant = Tenant.objects.get(id=serializer.validated_data["tenant_id"])
 
                 contract = RentalContract(
-                    tenant=serializer.validated_data["tenant"],
-                    rental_unit=serializer.validated_data["rental_unit"],
+                    tenant=tenant,
+                    rental_unit=rental_unit,
                     start_of_contract=serializer.validated_data["start_of_contract"],
                     end_of_contract=serializer.validated_data["end_of_contract"],
                     rent=serializer.validated_data["rent"],
@@ -37,8 +37,7 @@ class RentalContractListCreateView(APIView):
                 return Response(RentalContractSerializer(contract).data, status=status.HTTP_201_CREATED)
 
             except (RentalUnit.DoesNotExist, Tenant.DoesNotExist):
-                return Response({"error": "Tenant or Rental Unit not found"},
-                                status=status.HTTP_400_BAD_REQUEST)
+                return Response({"error": "Tenant or Rental Unit not found"}, status=status.HTTP_400_BAD_REQUEST)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
